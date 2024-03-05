@@ -24,28 +24,27 @@ def get_birthdays_per_week(users):
         delta_days = (birthday_this_year - today).days
 
         # determining the day of the week
-        if delta_days <7:
-            day_of_week = (today + timedelta(days = delta_days)).strftime("%A")
-            
-            # check the weekends
-            if delta_days >= 0:
-                if day_of_week in ["Saturday", "Sunday"]:
-                    day_of_week = "Monday"
+        day_of_week = (today + timedelta(days=delta_days)).strftime("%A") if 0 <= delta_days < 7 else None
 
-    # storing the result
-    birthday_dict[day_of_week].append(name)           
+        # check for weekends
+        if day_of_week in ["Saturday", "Sunday"]:
+            day_of_week = "Monday"
+
+        # storing the result
+        if day_of_week is not None:
+            birthday_dict[day_of_week].append(name)           
 
     # print result
-    for day, names in birthday_dict:
+    for day, names in birthday_dict.items():
         print(f"{day}: {', '.join(names)}")
 
 
-# Example usage:
+# example usage:
 users = [
-    {"name": "Bill Gates", "birthday": datetime(1955, 10, 28)},
-    {"name": "Jill Valentine", "birthday": datetime(1974, 11, 30)},
-    {"name": "Kim Kardashian", "birthday": datetime(1980, 10, 21)},
-    {"name": "Jan Koum", "birthday": datetime(1976, 2, 24)}
+    {"name": "Bill Gates", "birthday": datetime(1955, 3, 7)},
+    {"name": "Jill Valentine", "birthday": datetime(1974, 3, 8)},
+    {"name": "Kim Kardashian", "birthday": datetime(1980, 3, 5)},
+    {"name": "Jan Koum", "birthday": datetime(1976, 3, 4)}
 ]
 
 get_birthdays_per_week(users)
