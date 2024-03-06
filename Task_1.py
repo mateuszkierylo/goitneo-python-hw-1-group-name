@@ -21,7 +21,9 @@ def get_birthdays_per_week(users):
             birthday_this_year = birthday_this_year.replace(year = today.year + 1)
 
         # comparision with the current date
-        delta_days = (birthday_this_year - today).days
+        delta_days = (birthday_this_year - today).day
+
+        
 
         # determining the day of the week
         day_of_week = (today + timedelta(days=delta_days)).strftime("%A") if 0 <= delta_days < 7 else None
@@ -41,10 +43,10 @@ def get_birthdays_per_week(users):
 
 # example usage:
 users = [
-    {"name": "Bill Gates", "birthday": datetime(1955, 3, 7)},
-    {"name": "Jill Valentine", "birthday": datetime(1974, 3, 8)},
-    {"name": "Kim Kardashian", "birthday": datetime(1980, 3, 5)},
-    {"name": "Jan Koum", "birthday": datetime(1976, 3, 4)}
+    {"name": "Bill Gates", "birthday": datetime(1955, 4, 7)},
+    {"name": "Jill Valentine", "birthday": datetime(1974, 4, 8)},
+    {"name": "Kim Kardashian", "birthday": datetime(1980, 4, 5)},
+    {"name": "Jan Koum", "birthday": datetime(1976, 4, 4)}
 ]
 
 get_birthdays_per_week(users)
